@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include <stdlib.h>
+
+#define MAX_CHANGE 999
+
+/* function prototypes */
+int try_one_coin(int *cents, int coin);
+int round_to_5(int cents);
+void print_change(int cents);
+void print_coin(int ncoins, int coin);
+
+int main(int argc, char*argv[]){
+    int amount;
+    printf("Enter amount in cents: ");
+    if (scanf("%d", &amount) != 1 || (amount <0) || (amount > MAX_CHANGE)){
+        printf("Error in input\n");
+        exit(EXIT_FAILURE);
+    }
+    print_change(rount_to_5(amount));
+    return 0;
+}
+
+int round_to_5(int cents){
+    int remainder, quotient;
+    remainder = cents % 5;
+    quotient = cents / 5;
+    // round
+    if (remainder >2){
+        // round up
+        return ((quotient +1)*5);
+    }
+    else {
+        return ((quotient)*5);
+    }
+}
+
+void print_coin(int ncoins, int coin){
+    if (ncoins){
+        printf("give %d %3d-cent coins\n", ncoins, coin);
+    }
+}
+
+int try_one_coin(int *cents, int coin){
+    
+}
+    
+
+void print_change(int cents){
+    int ncoins; // 987 cents
+    ncoins = try_one_coin(&cents, 200); // &cents adress of cents -> access with *cents
+    // 187 cents
+    print_coin(ncoins,200);
+    
+    ncoins = try_one_coin(&cents, 100);
+    print_coin(ncoins,100);
+    
+    ncoins = try_one_coin(&cents, 50);
+    print_coin(ncoins,50);
+    
+    ncoins = try_one_coin(&cents, 20);
+    print_coin(ncoins,20);
+    
+    ncoins = try_one_coin(&cents, 10);
+    print_coin(ncoins,10);
+    
+    ncoins = try_one_coin(&cents, 5);
+    print_coin(ncoins,5);
+    
+    return;
+}
